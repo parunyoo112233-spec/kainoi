@@ -960,10 +960,6 @@ fun DailyReportView(
                 }
             }
 
-            item {
-                GoogleDriveSyncCard()
-            }
-
             // Aggregated Summary for the selected date
             item {
                 Card(
@@ -2490,10 +2486,6 @@ fun AdminDashboardView(
             }
         }
 
-        item {
-            GoogleDriveSyncCard()
-        }
-
         // Section 1: Edit Initial Fuel Stocks
         item {
             Text(
@@ -3143,10 +3135,6 @@ fun OperatorInventoryDashboard(
                     }
                 }
             }
-        }
-
-        item {
-            GoogleDriveSyncCard()
         }
 
         // Alert Area Widget (ระบบแจ้งเตือน)
@@ -4028,10 +4016,6 @@ fun OperatorDailyReportView(
                 }
             }
 
-            item {
-                GoogleDriveSyncCard()
-            }
-
             // Aggregated Summary for the selected date
             item {
                 Card(
@@ -4420,10 +4404,6 @@ fun UserDispenseDashboard(
                     }
                 }
             }
-        }
-
-        item {
-            GoogleDriveSyncCard()
         }
 
         // --- NEW PENDING DISPENSE NOTIFICATIONS SECTION ---
@@ -5023,102 +5003,4 @@ fun UserDispenseDashboard(
     }
 }
 
-@Composable
-fun GoogleDriveSyncCard(modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-    Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .border(
-                1.dp,
-                Color(0xFF4285F4).copy(alpha = 0.5f),
-                RoundedCornerShape(12.dp)
-            ),
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color(0xFF4285F4).copy(alpha = 0.08f)
-        )
-    ) {
-        Column(
-            modifier = Modifier.padding(14.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(36.dp)
-                        .background(Color(0xFF4285F4).copy(alpha = 0.15f), CircleShape),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Share,
-                        contentDescription = "Google Drive Link",
-                        tint = Color(0xFF4285F4)
-                    )
-                }
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = "คลังข้อมูลกลาง สป.3 (Google Drive)",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 14.sp,
-                        color = Color(0xFF1976D2)
-                    )
-                    Text(
-                        text = "ระบบจัดเก็บเอกสารและฐานข้อมูลกองทัพ มทบ.44",
-                        fontSize = 10.sp,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-            }
 
-            Divider(color = Color(0xFF4285F4).copy(alpha = 0.12f))
-
-            Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
-                Text(
-                    text = "• กดปุ่มส่งออก CSV ด้านบนเพื่อรับไฟล์รายงานลงเครื่อง",
-                    fontSize = 11.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Text(
-                    text = "• กดลิงก์ด้านล่างเพื่ออัปโหลดรายงาน/รูปเอกสารสั่งจ่ายเข้าไปเก็บยังโฟลเดอร์ส่วนกลาง",
-                    fontSize = 11.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Text(
-                    text = "• สำหรับใช้ซิงก์ข้อมูลและตรวจสอบย้อนหลังได้เรียลไทม์",
-                    fontSize = 11.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-
-            Button(
-                onClick = {
-                    try {
-                        val intent = android.content.Intent(
-                            android.content.Intent.ACTION_VIEW,
-                            android.net.Uri.parse("https://drive.google.com/drive/folders/12MpJWat3SsmGb1tF2N1L5fyegq648cGA")
-                        )
-                        context.startActivity(intent)
-                    } catch (e: Exception) {
-                        // Suppress
-                    }
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF34A853)
-                ),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(40.dp)
-                    .testTag("google_drive_link_button")
-            ) {
-                Icon(Icons.Default.ArrowUpward, contentDescription = "Open Drive", modifier = Modifier.size(16.dp))
-                Spacer(modifier = Modifier.width(6.dp))
-                Text("เปิดโฟลเดอร์ Google Drive ส่วนกลาง", fontSize = 12.sp, fontWeight = FontWeight.Bold)
-            }
-        }
-    }
-}
