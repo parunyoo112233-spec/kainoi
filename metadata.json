@@ -1,0 +1,6 @@
+{
+  "name": "ระบบควบคุม สป.3 มทบ.44",
+  "description": "แอปพลิเคชันบริหารจัดการคลังน้ำมันเชื้อเพลิง 4 ชนิด พร้อมระบบบันทึกรับเข้า เบิกจ่าย สถิติผู้ใช้งาน และรายงานสรุปประจำวันเสถียรภาพสูง",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
